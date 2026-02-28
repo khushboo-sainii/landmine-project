@@ -26,7 +26,7 @@ export const metadata = {
   openGraph: {
     title: "Landmine Soft",
     description: "Landmine Soft is a technology company that helps startups, growing businesses, and enterprises build their digital core — smarter, faster, and future-ready.",
-    url: "https://landminesoft.com",
+    url: "https://landmine-project.vercel.app/home",
     siteName: "Landmine Soft",
     type: "website",
   },
