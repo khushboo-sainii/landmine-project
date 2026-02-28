@@ -1,0 +1,449 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --font-heading: "Syne", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+
+  --color-navy: #0a2463;
+  --color-navy-dark: #071a4f;
+  --color-navy-light: #1a3a8f;
+  --color-navy-subtle: #ebf0ff;
+
+  --color-teal: #00b4d8;
+  --color-teal-dark: #0096c7;
+  --color-teal-light: #caf0f8;
+
+  --color-white: #ffffff;
+  --color-gray-50: #f7f9fc;
+  --color-gray-100: #eef1f8;
+
+  --color-ink: #0d1b3e;
+  --color-ink-2: #4a5568;
+  --color-ink-muted: #718096;
+
+  --color-hero: #060f2e;
+  --color-hero-card: #0d1f4e;
+
+  --color-border: #dde3f0;
+  --color-border-dark: #1a2e5a;
+
+  --color-success: #00a878;
+  --color-error: #e53e3e;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  /* ============================================================
+   BASE
+  ============================================================ */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: #ffffff;
+    color: #0d1b3e;
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  /* ============================================================
+   KEYFRAMES
+  ============================================================ */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounceSlow {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(7px);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.55);
+      opacity: 0;
+    }
+  }
+}
+
+/* ============================================================
+   COMPONENTS
+============================================================ */
+@layer components {
+  /* ── NAVBAR ── */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition:
+      background 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .navbar-transparent {
+    background: #060f2e;
+  }
+
+  .navbar-solid {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(10, 36, 99, 0.1);
+  }
+
+  /* ── CONTAINER ──
+     Use .container-main for fixed 1280px sections (services, about, etc.)
+     Use w-full for full-bleed sections (hero, banners)
+  */
+  .container-main {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Navbar inner — same 1280px but keeps nav content aligned */
+  .navbar-inner {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    height: 68px;
+  }
+
+  /* ── SECTION SPACING ── */
+  .section-center {
+    @apply flex flex-col items-center text-center;
+    padding-top: clamp(3rem, 8vw, 6rem);
+    padding-bottom: clamp(3rem, 8vw, 6rem);
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    font-family: var(--font-body);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-navy);
+    line-height: 1.1;
+    max-width: 800px;
+  }
+
+  /* ── SECTION BAR (Underline) ── */
+  .section-bar {
+    display: block;
+    width: 3rem;
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--color-teal), var(--color-navy));
+    margin: 1.25rem auto;
+  }
+
+  /* ── SECTION DESCRIPTION ── */
+  .section-description {
+    color: var(--color-ink-2);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: #ffffff;
+    border: 1px solid #dde3f0;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(10, 36, 99, 0.06);
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(10, 36, 99, 0.13);
+    border-color: #1a3a8f;
+  }
+
+  /* ── BUTTON PRIMARY ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background: var(--color-navy);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-navy-light);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(10, 36, 99, 0.25);
+  }
+
+  /* ── BUTTON OUTLINE ── */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background: transparent;
+    color: var(--color-teal);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--color-teal);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .btn-outline:hover {
+    background: var(--color-teal);
+    color: #ffffff;
+  }
+
+  /* ── HERO SECTION (always full-width) ── */
+  .hero-section {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── ICON BOX ── */
+  .icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--color-navy-subtle);
+    color: var(--color-navy);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--color-border);
+    margin: 0;
+  }
+}
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+@layer utilities {
+  .text-gradient-white {
+    background: linear-gradient(135deg, #ffffff 0%, #caf0f8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #0a2463 0%, #00b4d8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.9s ease forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  .animate-bounce-slow {
+    animation: bounceSlow 2s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 22s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  /* Full bleed — hero, banners */
+  .full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+}
+
+/* ============================================================
+   SCROLLBAR + SELECTION
+============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a3a8f;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00b4d8;
+}
+
+::selection {
+  background: #caf0f8;
+  color: #0a2463;
+}
+
+:focus-visible {
+  outline: 2px solid #00b4d8;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
