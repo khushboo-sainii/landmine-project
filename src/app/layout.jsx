@@ -1,3 +1,4 @@
+import Script from "next/script";
 import { Syne, Plus_Jakarta_Sans, Fira_Code } from "next/font/google";
 import "./globals.css";
 
@@ -47,7 +48,24 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-FKGJF66E5Z"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FKGJF66E5Z');
+          `}
+        </Script>
+
+      </body>
     </html>
   );
 }
